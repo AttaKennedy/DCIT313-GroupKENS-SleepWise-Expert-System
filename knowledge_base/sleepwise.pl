@@ -84,7 +84,7 @@ sleep_cause(substance_use) :-
 % Recreational drug use also fires substance_use
 sleep_cause(substance_use) :-
     user_fact(recreational_drug_use, Value),
-    member(Value, [often, regularly]).
+    member(Value, [often, frequently]).
 
 % Late fluid intake causes night-time wakeups (nocturia)
 sleep_cause(poor_hydration) :-
@@ -140,7 +140,7 @@ sleep_cause(poor_self_control) :-
 % ADHD symptoms also indicate poor self-control over sleep
 sleep_cause(poor_self_control) :-
     user_fact(adhd_symptoms, Value),
-    member(Value, [often, always]).
+    member(Value, [moderate, severe]).
 
 % Perfectionism raises pre-sleep arousal
 sleep_cause(perfectionism) :-
@@ -203,7 +203,7 @@ sleep_cause(excessive_screen_use) :-
 % Social media use at night is a specific screen sub-cause
 sleep_cause(excessive_screen_use) :-
     user_fact(social_media_use_at_night, Value),
-    member(Value, [one_to_two_hours, over_two_hours]).
+    member(Value, [moderate, long]).
 
 % Inconsistent sleep schedule disrupts the circadian rhythm
 sleep_cause(irregular_schedule) :-
@@ -212,7 +212,7 @@ sleep_cause(irregular_schedule) :-
 % Large weekend sleep catch-up also signals irregular schedule
 sleep_cause(irregular_schedule) :-
     user_fact(weekend_sleep_catchup, Value),
-    member(Value, [much_longer, very_much_longer]).
+    member(Value, [much_more, far_more]).
 
 % No bedtime routine means no physiological sleep signal
 sleep_cause(poor_sleep_hygiene) :-
@@ -281,9 +281,10 @@ sleep_cause(performance_impact) :-
     member(Value, [often, every_day]).
 
 % Frequent lecture absence is also a performance impact indicator
+% Frequent absence (never/rarely attending) indicates performance impact
 sleep_cause(performance_impact) :-
     user_fact(lecture_attendance, Value),
-    member(Value, [often, always]).
+    member(Value, [never, rarely]).
 
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -403,7 +404,7 @@ sleep_complaint(hypersomnia) :-
     user_fact(daytime_nap_hours, Value),
     member(Value, [moderate, long]),
     user_fact(morning_sleepiness, Value2),
-    member(Value2, [often, always]).
+    member(Value2, [groggy, extremely_tired]).
 
 sleep_complaint(circadian_disruption) :-
     user_fact(consistent_sleep_time, inconsistent),

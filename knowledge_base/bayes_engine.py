@@ -500,10 +500,12 @@ LIKELIHOODS = {
     # ─────────────────────────────────────────────────────────────────────────
 
     "high_stress": {
-        # SELF-REPORT BIAS CORRECTION: medium stress elevated
+        # stress_level=medium is background noise, not evidence of HIGH stress.
+        # The Prolog cause rule requires stress_level=high. Bayesian must align.
+        # Lowered medium from 0.55 → 0.25 to prevent false positives on medium stress.
         "stress_level": {
             "low":    0.10,
-            "medium": 0.55,   # elevated from 0.40 — underreporting correction
+            "medium": 0.25,   # was 0.55 — too high; caused spurious high_stress fires
             "high":   0.92,
         },
         "financial_stress": {
