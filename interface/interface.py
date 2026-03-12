@@ -26,6 +26,7 @@ except ImportError:
     PROLOG_AVAILABLE = False
 
 # ── Local modules ─────────────────────────────────────────────────────────────
+sys.path.insert(0, os.path.dirname(__file__))
 from session_manager import run_session, get_variant_menu, VARIANT_CONFIG
 from bayes_engine import CAUSES, CAUSE_WEIGHTS
 

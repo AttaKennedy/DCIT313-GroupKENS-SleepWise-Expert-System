@@ -58,6 +58,11 @@ from trigger_rules import (
     get_triggered_cross_domain,
 )
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+
 # ─── CONSTANTS ────────────────────────────────────────────────────────────────
 VARIANT_ORDER = ["q20", "q30", "q40", "q50"]
 DOMAINS       = ["lifestyle", "psychological", "environmental",

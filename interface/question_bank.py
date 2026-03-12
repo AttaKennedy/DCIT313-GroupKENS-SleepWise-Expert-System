@@ -17,6 +17,11 @@
 #   evidence  : Source citation for documentation.
 # =============================================================================
 
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(__file__))
+
 QUESTION_BANK = [
 
     # =========================================================================
