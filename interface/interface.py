@@ -26,6 +26,9 @@ except ImportError:
     PROLOG_AVAILABLE = False
 
 # ── Local modules ─────────────────────────────────────────────────────────────
+
+import sys
+import os
 sys.path.insert(0, os.path.dirname(__file__))
 from session_manager import run_session, get_variant_menu, VARIANT_CONFIG
 from bayes_engine import CAUSES, CAUSE_WEIGHTS
@@ -35,7 +38,7 @@ from bayes_engine import CAUSES, CAUSE_WEIGHTS
 # CONSTANTS
 # ─────────────────────────────────────────────────────────────────────────────
 
-PROLOG_FILE = os.path.join(os.path.dirname(__file__), "sleepwise.pl")
+PROLOG_FILE = os.path.join(os.path.dirname(__file__), '..', 'knowledge_base', 'sleepwise.pl')
 
 SEVERITY_LABELS = {
     "none":     "No significant concern",
