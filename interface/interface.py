@@ -26,8 +26,8 @@ except ImportError:
     PROLOG_AVAILABLE = False
 
 # ── Local modules ─────────────────────────────────────────────────────────────
-from knowledge_base.session_manager import run_session, get_variant_menu, VARIANT_CONFIG
-from knowledge_base.bayes_engine import CAUSES, CAUSE_WEIGHTS
+from session_manager import run_session, get_variant_menu, VARIANT_CONFIG
+from bayes_engine import CAUSES, CAUSE_WEIGHTS
 
 
 # ─────────────────────────────────────────────────────────────────────────────
