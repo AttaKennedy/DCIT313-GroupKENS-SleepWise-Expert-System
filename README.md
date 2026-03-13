@@ -1,107 +1,128 @@
-# SleepWise: Expert System for Improving Sleep Quality Among University Students
+# SleepWise
+### Sleep Quality Advisor — Expert System
+**DCIT 313: Introduction to Artificial Intelligence | Group KENS | University of Ghana | 2025/2026**
 
-## DCIT 313: Artificial Intelligence — Group Project
-**Group Name:** KENS  
-**Repository:** DCIT313-GroupKENS-SleepWise-Expert-System  
-**Academic Year:** 2025/2026  
+---
+
+## What It Does
+
+SleepWise asks a university student between 20 and 50 questions about their daily habits, stress levels, living environment, and study patterns. It then produces a personalised report showing which factors are hurting their sleep, how serious the problem is, and one specific action to fix each cause.
 
 ---
 
 ## Group Members
 
-| Full Name | Student ID | Role |
-|---|---|---|
-| Ofori Kennedy Atta | 22110500 | Python Interface Developer & Group Lead |
-| Ofori Kenneth Atta | 22173900 | Prolog Developer & Knowledge Engineer |
+| Name | Student ID |
+|---|---|
+| Ofori Kennedy Atta | 22110500 |
+| Ofori Kenneth Atta | 22173900 |
 
 ---
 
-## System Description
+## How It Works
 
-SleepWise is a rule-based Expert System built using SWI-Prolog and Python that 
-helps university students identify the possible causes of poor sleep quality and 
-provides personalized recommendations for improvement.
+The system has two parts that work together.
 
-The system collects responses from the user across five knowledge domains:
-- Lifestyle factors (caffeine, diet, exercise)
-- Psychological factors (stress, anxiety, academic pressure)
-- Environmental factors (noise, light, room temperature)
-- Behavioral factors (screen time, sleep schedule, napping)
-- Academic factors (late night studying, deadlines, early classes)
+**SWI-Prolog** (`knowledge_base/sleepwise.pl`) holds all the intelligence — 29 cause rules across five domains, a four-level severity calculator, six sleep complaint types, five clinical alert flags, and 29 recommendations. 
 
-Based on the user's responses, the Prolog inference engine reasons through the 
-knowledge base and produces a sleep quality profile that includes identified causes, 
-severity classification (mild, moderate, or severe), and actionable recommendations.
+**Python** (`interface/interface.py`) handles everything the student sees — asking questions, running a Bayesian engine that decides which questions matter most, and displaying the final report. It talks to Prolog through pyswip.
+
+The five domains covered:
+
+| Domain | Examples |
+|---|---|
+| Lifestyle | Caffeine, diet, alcohol, medications |
+| Psychological | Stress, anxiety, depression, burnout |
+| Environmental | Noise, light, temperature, room comfort |
+| Behavioural | Screen time, sleep schedule, napping |
+| Academic | Study hours, exam pressure, workload |
 
 ---
 
 ## Repository Structure
+
 ```
 DCIT313-GroupKENS-SleepWise-Expert-System/
 │
 ├── knowledge_base/
-│   └── sleepwise.pl        # SWI-Prolog knowledge base with all facts and rules
+│   └── sleepwise.pl                      # Prolog knowledge base — all rules and facts
 │
 ├── interface/
-│   └── interface.py        # Python pyswip interface for user interaction
+│   ├── interface.py                      # Main entry point — run this to start
+│   ├── bayes_engine.py                   # Bayesian probability engine
+│   ├── question_bank.py                  # All 120 questions across 4 session variants
+│   ├── session_manager.py                # Session flow and state management
+│   ├── trigger_rules.py                  # Adaptive question selection rules
+│   ├── test_knowledge_base.py            # 189 unit tests for sleepwise.pl
+│   └── test_system_integration.py        # 78 integration tests for the full pipeline
 │
 ├── docs/
-│   ├── project_brief.pdf   # Full project planning document
+│   ├── project_brief.pdf                 # Project planning document
 │   ├── knowledge_engineering_report.pdf  # Sources and rule acquisition process
-│   ├── test_cases.pdf      # Positive and negative test scenarios
-│   └── project_report.pdf  # Final technical documentation
+│   ├── test_cases.pdf                    # All 267 test cases with results
+│   └── project_report.pdf               # Final technical report
 │
 └── README.md
 ```
+
+> `interface.py` is the only required entry point. The other files in `interface/` are supporting modules it imports automatically. The two test scripts are included so the marker can verify the results in `test_cases.pdf` by running them directly.
+
+---
+
+## Requirements
+
+- Python 3.8 or higher
+- SWI-Prolog 8.x or higher
+- pyswip
+
+```bash
+pip install pyswip
+```
+
+---
+
+## Running the System
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-repo/DCIT313-GroupKENS-SleepWise-Expert-System.git
+cd DCIT313-GroupKENS-SleepWise-Expert-System
+
+# 2. Run the system
+cd interface
+python interface.py
+```
+
+The system will ask you to choose a session length (20, 30, 40, or 50 questions), then walk you through the assessment.
+
+---
+
+## Running the Tests
+
+```bash
+cd interface
+
+# Knowledge base tests — 189 tests against sleepwise.pl
+python test_knowledge_base.py
+
+# Integration tests — 78 tests on the full Python-Prolog pipeline
+python test_system_integration.py
+```
+
+All 267 tests should pass. Full test case documentation is in `docs/test_cases.pdf`.
 
 ---
 
 ## Technology Stack
 
-| Technology | Purpose |
-|---|---|
-| SWI-Prolog | Logic engine — stores and processes all knowledge base rules and facts |
-| Python 3.x | Interface language for user interaction and output display |
-| pyswip | Python library that bridges user inputs to the Prolog inference engine |
-| GitHub | Version control and project submission platform |
-
----
-
-## How to Run the System
-
-### Requirements
-- SWI-Prolog installed on your machine
-- Python 3.x installed
-- pyswip library installed (`pip install pyswip`)
-
-### Steps
-1. Clone the repository
-2. Navigate to the `/interface` folder
-3. Run `python interface.py`
-4. Answer the questions as prompted
-5. Receive your personalized sleep quality profile
-
----
-
-## Individual Contributions
-
-**Ofori Kennedy Atta (22110500)**
-- Python pyswip interface development
-- User input collection and output formatting
-- System testing with positive and negative test cases
-- GitHub repository setup and management
-- Project documentation and /docs folder
-
-**Ofori Kenneth Atta (22173900)**
-- SWI-Prolog knowledge base construction
-- Facts and rules authoring across all five domains
-- Severity classification logic
-- Knowledge engineering documentation
-- Rule mapping and decision flow diagram
+| Technology | Version | Purpose |
+|---|---|---|
+| SWI-Prolog | 8.x | Logic engine and knowledge base |
+| Python | 3.8+ | Interface, Bayesian engine, session management |
+| pyswip | Latest | Python-to-Prolog bridge |
 
 ---
 
 ## Disclaimer
 
-SleepWise is designed as an intelligent advisory system for educational purposes 
-only. It is not intended to replace professional medical advice or clinical evaluation.
+SleepWise is an educational project built for DCIT 313. It is not a medical tool and is not a substitute for professional advice.
