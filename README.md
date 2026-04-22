@@ -12,10 +12,10 @@ SleepWise asks a university student between 20 and 50 questions about their dail
 
 ## Group Members
 
-| Name | Student ID |
+| Name | Username - Student ID |
 |---|---|
-| Ofori Kennedy Atta | 22110500 |
-| Ofori Kenneth Atta | 22173900 |
+| Ofori Kennedy Atta | Ofori Kennedy Atta - 22110500 |
+| Ofori Kenneth Atta | Kenneth22173900 - 22173900 |
 
 ---
 
